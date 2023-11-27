@@ -1,0 +1,181 @@
+﻿@model Livraria.ViewModel.AluguelVM
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Alugado</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <select class="form-select" asp-for="IdCliente" id="ClienteName" asp-items="@ViewBag.IdClientes">
+                    <option selected value="">Selecione um Cliente</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <select class="form-select" asp-for="IdLivro" id="LivroName" asp-items="@ViewBag.IdLivros">
+                    <option selected value="">Selecione um Livro</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="DataEntrega" class="control-label"></label>
+                <input asp-for="DataEntrega" class="form-control" />
+                <span asp-validation-for="DataEntrega" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Retornado" /> @Html.DisplayNameFor(model => model.Retornado)
+                </label>
+            </div>
+            <div class="form-group">
+                <button type="button" id="adicionar" class="btn btn-primary adicionar">Adicionar</button>
+            </div>
+            <div>
+                <table id="tbLivros" class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                                Livro
+                            </th>
+                            <th>
+                                Cliente
+                            </th>
+                            <th>
+                                Data Retorno
+                            </th>
+                            <th>
+                                Retornado
+                            </th>
+                            <th>
+                                Remover
+                            </th>
+                        </tr>
+                    </thead>
+                    @{
+                        if (Model != null && Model.ListaAluguel != null)
+                        {
+                            int contador = 0;
+                            foreach (var item in Model.ListaAluguel)
+                            {
+                                //var valorTotal = item.Quantidade * item.ValorVenda;
+                                <tr>
+                                    <td>
+                                        <input type="hidden" name="ListaAluguel[@contador].IdLivro" value="@item.IdLivro" />
+                                        
+                                        @item.IdLivro
+                                    </td>
+                                    <td>
+                                        <input type="hidden" name="ListaAluguel[@contador].IdCliente" value="@item.IdCliente" />
+                                        
+                                        @item.IdCliente
+
+                                    </td>
+                                    <td>
+                                       
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-danger remover">Remover</button>
+                                    </td>
+
+
+                                </tr>
+                                contador += 1;
+                            }
+                        }
+                    }
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+            <button type="submit" value="Create" class="btn btn-outline-success">Salvar</button>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+
+@section Scripts {
+    <script>
+
+        $('#adicionar').on('click', function () {
+
+
+            var novoItem = {
+                IdLivro: $('#LivroName').val(),
+                IdCliente: $('#ClienteName').val(),
+                LivroName: $('#LivroName option:selected').text(),
+                ClienteName: $('#ClienteName option:selected').text(),
+                DataEntrega: $('#DataEntrega').val(),
+                Retornado: $('#Retornado').is(':checked')
+            };
+            console.log(novoItem)
+
+            adicionarItemATabela(novoItem);
+        });
+
+        function adicionarItemATabela(item) {
+            var newRow = '<tr>' +
+                '<td>' + item.IdLivro + '</td>' +
+                '<td>' + item.LivroName + '</td>' +
+                '<td>' + item.IdCliente + '</td>' +
+                '<td>' + item.ClienteName + '</td>' +
+                '<td>' + item.DataEntrega + '</td>' +
+                '<td>' + item.Retornado + '</td>' +
+                '<td><button type="button" class="remover">Remover</button></td>' +
+                '</tr>';
+
+            $('#tbLivros tbody').append(newRow);
+
+        }
+
+        $('#tbLivros').on('click', '.remover', function () {
+            $(this).closest('tr').remove();
+        });
+
+        // Evento de envio do formulário
+        $('form').submit(function (e) {
+            e.preventDefault(); // Evita o comportamento padrão de envio do formulário
+
+            // Coleta os itens de aluguel da tabela
+            var listaItensAluguel = [];
+            $('#tbLivros tbody tr').each(function () {
+                var livro = $(this).find('td:eq(1)').text();
+                var cliente = $(this).find('td:eq(3)').text();
+                var dataEntrega = $(this).find('td:eq(4)').text();
+                var retornado = $(this).find('td:eq(5)').text();
+                var idLivro = $(this).find('td:eq(0)').text();
+                var idCliente = $(this).find('td:eq(2)').text();
+
+                //var formattedDate = new Date(dataEntrega); // Formata a data para o formato apropriado
+
+
+                listaItensAluguel.push({
+                    IdLivro: idLivro,
+                    IdCliente: idCliente,
+                    LivroName: livro,
+                    ClienteName: cliente,
+                    DataEntrega: dataEntrega,
+                    Retornado: retornado,
+                });
+            });
+            console.log(listaItensAluguel)
+
+            // Adiciona os itens de aluguel ao input hidden para serem enviados ao servidor
+            $('<input />').attr('type', 'hidden')
+                .attr('name', 'ListaAluguelTemporaria')
+                .attr('value', JSON.stringify(listaItensAluguel))
+                .appendTo('form');
+
+            // Submete o formulário
+            this.submit();
+        });
+    </script>
+}
