@@ -2,6 +2,7 @@
 #nullable disable
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
@@ -12,15 +13,19 @@ public partial class ItemAlugado
 {
     [Key]
     [Column("id")]
+    [DisplayName("Código")]
     public int Id { get; set; }
 
     [Column("idLivro")]
+    [DisplayName("Código do Cliente")]
     public int IdLivro { get; set; }
 
     [Column("idCliente")]
+    [DisplayName("Código do Cliente")]
     public int IdCliente { get; set; }
 
     [Column("dataEntrega", TypeName = "date")]
+    [DisplayName("Data de Entrega")]
     public DateTime DataEntrega { get; set; }
 
     [Column("retornado")]
@@ -28,6 +33,7 @@ public partial class ItemAlugado
 
     [Column("alugadoId")]
     public int AlugadoId { get; set; }
+    [DisplayName("Id do Aluguel")]
 
     [ForeignKey("AlugadoId")]
     [InverseProperty("ItemAlugado")]

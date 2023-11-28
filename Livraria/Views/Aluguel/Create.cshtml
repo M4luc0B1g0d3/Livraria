@@ -3,12 +3,13 @@
 @{
     ViewData["Title"] = "Create";
 }
-
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
 <h1>Create</h1>
 
 <h4>Alugado</h4>
 <hr />
 <div class="row">
+
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -36,11 +37,18 @@
                 <button type="button" id="adicionar" class="btn btn-primary adicionar">Adicionar</button>
             </div>
             <div>
-                <table id="tbLivros" class="table">
+                <table class="table" id="tbLivros">
+                    
                     <thead>
-                        <tr>
+                        <tr class="table-primary">
+                            <th>
+                                Id do Livro
+                            </th>
                             <th>
                                 Livro
+                            </th>
+                            <th>
+                                Id CLiente
                             </th>
                             <th>
                                 Cliente
@@ -62,7 +70,6 @@
                             int contador = 0;
                             foreach (var item in Model.ListaAluguel)
                             {
-                                //var valorTotal = item.Quantidade * item.ValorVenda;
                                 <tr>
                                     <td>
                                         <input type="hidden" name="ListaAluguel[@contador].IdLivro" value="@item.IdLivro" />
@@ -79,7 +86,7 @@
                                        
                                     </td>
                                     <td>
-                                        <button type="button" class="btn btn-danger remover">Remover</button>
+                                        <button type="button" class="btn btn-danger">Remover</button>
                                     </td>
 
 
@@ -92,7 +99,7 @@
                     </tbody>
                 </table>
             </div>
-            <button type="submit" value="Create" class="btn btn-outline-success">Salvar</button>
+            <button type="submit" value="Create" class="btn btn-success">Salvar</button>
         </form>
     </div>
 </div>
@@ -101,6 +108,7 @@
     <a asp-action="Index">Back to List</a>
 </div>
 
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 
 @section Scripts {
     <script>
@@ -129,7 +137,7 @@
                 '<td>' + item.ClienteName + '</td>' +
                 '<td>' + item.DataEntrega + '</td>' +
                 '<td>' + item.Retornado + '</td>' +
-                '<td><button type="button" class="remover">Remover</button></td>' +
+                '<td><button type="button" class="btn btn-danger">Remover</button></td>' +
                 '</tr>';
 
             $('#tbLivros tbody').append(newRow);
@@ -140,11 +148,9 @@
             $(this).closest('tr').remove();
         });
 
-        // Evento de envio do formulário
         $('form').submit(function (e) {
-            e.preventDefault(); // Evita o comportamento padrão de envio do formulário
+            e.preventDefault();
 
-            // Coleta os itens de aluguel da tabela
             var listaItensAluguel = [];
             $('#tbLivros tbody tr').each(function () {
                 var livro = $(this).find('td:eq(1)').text();
@@ -153,8 +159,6 @@
                 var retornado = $(this).find('td:eq(5)').text();
                 var idLivro = $(this).find('td:eq(0)').text();
                 var idCliente = $(this).find('td:eq(2)').text();
-
-                //var formattedDate = new Date(dataEntrega); // Formata a data para o formato apropriado
 
 
                 listaItensAluguel.push({
@@ -168,13 +172,11 @@
             });
             console.log(listaItensAluguel)
 
-            // Adiciona os itens de aluguel ao input hidden para serem enviados ao servidor
             $('<input />').attr('type', 'hidden')
                 .attr('name', 'ListaAluguelTemporaria')
                 .attr('value', JSON.stringify(listaItensAluguel))
                 .appendTo('form');
 
-            // Submete o formulário
             this.submit();
         });
     </script>
