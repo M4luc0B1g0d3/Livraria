@@ -39,7 +39,7 @@ namespace Livraria.Controllers
             {
                 var livrosalterados = await _Servicolivro.oRepositoryLivro.AlterarAsync(livro);
 
-                return View(livrosalterados);
+                return RedirectToAction("Index");
             }
             return View(livro);
         }
@@ -56,9 +56,9 @@ namespace Livraria.Controllers
             {
                 var livroalterado = await _Servicolivro.oRepositoryLivro.IncluirAsync(livro);
 
-                return View(livroalterado);
+                return RedirectToAction("Index");
             }
-            return View(livro);
+            return View();
         }
         public async Task<IActionResult> Delete(int id)
         {

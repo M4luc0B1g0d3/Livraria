@@ -38,7 +38,7 @@ namespace Livraria.Controllers
             {
                 var clientealterado = await _ServicoCliente.oRepositoryCliente.AlterarAsync(cliente);
 
-                return View(clientealterado);
+                return RedirectToAction("Index");
             }
             return View(cliente);
         }
@@ -55,7 +55,7 @@ namespace Livraria.Controllers
             {
                 var clientealterado = await _ServicoCliente.oRepositoryCliente.IncluirAsync(cliente);
 
-                return View(clientealterado);
+                return RedirectToAction("Index");
             }
             return View(cliente);
         }

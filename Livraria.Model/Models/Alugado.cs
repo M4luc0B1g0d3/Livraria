@@ -2,8 +2,10 @@
 #nullable disable
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace Livraria.Model.Models;
@@ -12,15 +14,20 @@ public partial class Alugado
 {
     [Key]
     [Column("id")]
+    [HiddenInput(DisplayValue = false)]
+    [DisplayName("Código")]
     public int Id { get; set; }
 
     [Column("idCliente")]
+    [DisplayName("Código do Cliente")]
     public int IdCliente { get; set; }
 
     [Column("idLivro")]
+    [DisplayName("Código do Livro")]
     public int IdLivro { get; set; }
 
     [Column("dataRetorno", TypeName = "date")]
+    [DisplayName("Data de Retorno")]
     public DateTime DataRetorno { get; set; }
 
     [Column("retornado")]

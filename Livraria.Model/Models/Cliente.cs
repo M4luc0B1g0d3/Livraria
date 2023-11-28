@@ -2,8 +2,10 @@
 #nullable disable
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace Livraria.Model.Models;
@@ -12,6 +14,8 @@ public partial class Cliente
 {
     [Key]
     [Column("id")]
+    [DisplayName("Código")]
+    [HiddenInput(DisplayValue = false)]
     public int Id { get; set; }
 
     [Required]
@@ -24,6 +28,7 @@ public partial class Cliente
     [Column("endereco")]
     [StringLength(80)]
     [Unicode(false)]
+    [DisplayName("Endereço")]
     public string Endereco { get; set; }
 
     [Required]

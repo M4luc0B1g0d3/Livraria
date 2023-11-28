@@ -1,20 +1,27 @@
 ﻿using Livraria.Model.Models;
 using Livraria.Models;
+using System.ComponentModel;
 
 namespace Livraria.ViewModel
 {
     public class AluguelVM
     {
+        [DisplayName("Código")]
         public int Id { get; set; }
 
+        [DisplayName("Código do Cliente")]
         public int IdCliente { get; set; }
 
+        [DisplayName("Nome do Cliente")]
         public string ClienteName { get; set; }
 
+        [DisplayName("Nome do Livro")]
         public string LivroName { get; set; }
 
+        [DisplayName("Código do Livro")]
         public int IdLivro { get; set; }
 
+        [DisplayName("Data de Retorno")]
         public DateTime DataEntrega { get; set; }
 
         public bool Retornado { get; set; }
@@ -45,8 +52,6 @@ namespace Livraria.ViewModel
             var db = new LivrariaContext();
             var Aluguel = db.Alugado.Find(id);
 
-            //var listaAluguel = new List<AluguelLivro>();
-            //listaAluguel = AluguelLivro.ListaAluguelLivro(id);
 
             return new AluguelVM()
             {
@@ -56,7 +61,6 @@ namespace Livraria.ViewModel
                 IdLivro = Aluguel.IdLivro,
                 LivroName = db.Livro.Find(Aluguel.IdLivro).Nome,
                 DataEntrega = Aluguel.DataRetorno,
-                //ListaAluguel = listaAluguel,
                 Retornado = Aluguel.Retornado,
             };
         }
@@ -68,8 +72,6 @@ namespace Livraria.ViewModel
 
             foreach (var v in listaAluguels)
             {
-                //var listaAluguel = new List<AluguelLivro>();
-                //listaAluguel = AluguelLivro.ListaAluguelLivro(v.Id);
 
                 var Aluguel = new AluguelVM();
                 Aluguel.Id = v.Id;
@@ -79,7 +81,6 @@ namespace Livraria.ViewModel
                 Aluguel.LivroName = db.Livro.FirstOrDefault(x => x.Id == v.IdLivro).Nome;
                 Aluguel.DataEntrega = v.DataRetorno;
                 Aluguel.Retornado = v.Retornado;
-                //Aluguel.ListaAluguel = listaAluguel;
                 listaRetorno.Add(Aluguel);
             }
             return listaRetorno;
