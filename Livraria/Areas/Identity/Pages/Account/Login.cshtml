@@ -4,10 +4,8 @@
 @{
     ViewData["Title"] = "Log in";
 }
-
-<h1>@ViewData["Title"]</h1>
-<div class="row">
-    <div class="col-md-4">
+<div class="row justify-content-center">
+    <div class="col-md-4 border rounded">
         <section>
             <form id="account" method="post">
                 <h2>Faça Login com sua conta de Administrador.</h2>
@@ -26,7 +24,7 @@
                 <div class="checkbox mb-3">
                     <label asp-for="Input.RememberMe" class="form-label">
                         <input class="form-check-input" asp-for="Input.RememberMe" />
-                        @Html.DisplayNameFor(m => m.Input.RememberMe)
+                        Lembrar conta?
                     </label>
                 </div>
                 <div>
