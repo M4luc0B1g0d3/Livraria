@@ -14,12 +14,12 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <select class="form-select" asp-for="IdCliente" id="ClienteName" asp-items="@ViewBag.IdClientes">
+                <select class="form-select px-2 py-2" asp-for="IdCliente" id="ClienteName" asp-items="@ViewBag.IdClientes">
                     <option selected value="">Selecione um Cliente</option>
                 </select>
             </div>
             <div class="form-group">
-                <select class="form-select" asp-for="IdLivro" id="LivroName" asp-items="@ViewBag.IdLivros">
+                <select class="form-select px-2 py-2" asp-for="IdLivro" id="LivroName" asp-items="@ViewBag.IdLivros">
                     <option selected value="">Selecione um Livro</option>
                 </select>
             </div>

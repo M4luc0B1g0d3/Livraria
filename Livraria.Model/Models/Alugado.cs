@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace Livraria.Model.Models;
@@ -13,6 +14,7 @@ public partial class Alugado
 {
     [Key]
     [Column("id")]
+    [HiddenInput(DisplayValue = false)]
     [DisplayName("Código")]
     public int Id { get; set; }
 
