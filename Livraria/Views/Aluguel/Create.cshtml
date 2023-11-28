@@ -33,7 +33,7 @@
                 </label>
             </div>
             <div class="form-group">
-                <button type="button" id="adicionar" class="btn btn-primary adicionar">Adicionar</button>
+                <button type="button" id="adicionar" class="btn btn-success">Adicionar</button>
             </div>
             <div>
                 <table id="tbLivros" class="table">
@@ -79,7 +79,7 @@
                                        
                                     </td>
                                     <td>
-                                        <button type="button" class="btn btn-danger remover">Remover</button>
+                                        <button type="button" class="btn btn-danger remover">Excluir</button>
                                     </td>
 
 
@@ -92,15 +92,14 @@
                     </tbody>
                 </table>
             </div>
-            <button type="submit" value="Create" class="btn btn-outline-success">Salvar</button>
+            <button type="submit" value="Adicionar" class="btn btn-outline-success">Adicionars</button>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index" class="btn btn-primary">Retornar</a>
 </div>
-
 
 @section Scripts {
     <script>
