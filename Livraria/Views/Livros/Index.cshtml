@@ -13,9 +13,6 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Id)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Nome)
             </th>
             <th>
@@ -37,14 +34,11 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Id)
+                <img class="capa img-fluid border rounded"
+                src="@Html.DisplayFor(modelItem => item.Capa)" alt="">
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Nome)
-            </td>
-            <td>
-                <img class="capa img-fluid border rounded"
-                src="@Html.DisplayFor(modelItem => item.Capa)" alt="">
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Ano)
