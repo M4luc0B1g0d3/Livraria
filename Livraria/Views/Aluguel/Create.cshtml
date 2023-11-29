@@ -14,11 +14,13 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
+                <label>Cliente</label>
                 <select class="form-select px-2 py-2" asp-for="IdCliente" id="ClienteName" asp-items="@ViewBag.IdClientes">
                     <option selected value="">Selecione um Cliente</option>
                 </select>
             </div>
             <div class="form-group">
+                <label>Livro</label>
                 <select class="form-select px-2 py-2" asp-for="IdLivro" id="LivroName" asp-items="@ViewBag.IdLivros">
                     <option selected value="">Selecione um Livro</option>
                 </select>
@@ -28,12 +30,7 @@
                 <input asp-for="DataEntrega" class="form-control" />
                 <span asp-validation-for="DataEntrega" class="text-danger"></span>
             </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="Retornado" /> @Html.DisplayNameFor(model => model.Retornado)
-                </label>
-            </div>
-            <div class="form-group">
+            <div class="form-group mb-3">
                 <button type="button" id="adicionar" class="btn btn-success">Adicionar</button>
             </div>
             <div>
@@ -57,9 +54,6 @@
                                 Data Retorno
                             </th>
                             <th>
-                                Retornado
-                            </th>
-                            <th>
                                 Remover
                             </th>
                         </tr>
@@ -81,9 +75,6 @@
                                         
                                         @item.IdCliente
 
-                                    </td>
-                                    <td>
-                                       
                                     </td>
                                     <td>
                                         <button type="button" class="btn btn-danger remover">Excluir</button>
@@ -120,7 +111,6 @@
                 LivroName: $('#LivroName option:selected').text(),
                 ClienteName: $('#ClienteName option:selected').text(),
                 DataEntrega: $('#DataEntrega').val(),
-                Retornado: $('#Retornado').is(':checked')
             };
             console.log(novoItem)
 
@@ -134,7 +124,6 @@
                 '<td>' + item.IdCliente + '</td>' +
                 '<td>' + item.ClienteName + '</td>' +
                 '<td>' + item.DataEntrega + '</td>' +
-                '<td>' + item.Retornado + '</td>' +
                 '<td><button type="button" class="btn btn-danger">Remover</button></td>' +
                 '</tr>';
 
@@ -154,7 +143,6 @@
                 var livro = $(this).find('td:eq(1)').text();
                 var cliente = $(this).find('td:eq(3)').text();
                 var dataEntrega = $(this).find('td:eq(4)').text();
-                var retornado = $(this).find('td:eq(5)').text();
                 var idLivro = $(this).find('td:eq(0)').text();
                 var idCliente = $(this).find('td:eq(2)').text();
 
@@ -165,7 +153,6 @@
                     LivroName: livro,
                     ClienteName: cliente,
                     DataEntrega: dataEntrega,
-                    Retornado: retornado,
                 });
             });
             console.log(listaItensAluguel)
