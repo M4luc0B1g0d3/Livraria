@@ -13,10 +13,10 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Nome)
+                @Html.DisplayNameFor(model => model.Capa)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Capa)
+                @Html.DisplayNameFor(model => model.Nome)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Ano)
@@ -51,8 +51,8 @@
             </td>
             <td class="">
                 <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning">Editar</a>
-                <a asp-action="Detalhes" asp-route-id="@item.Id" class="btn btn-info">Detalhes</a>
-                <a asp-action="Excluir" asp-route-id="@item.Id" class="btn btn-danger">Excluir</a>
+                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info">Detalhes</a>
+                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Excluir</a>
 
             </td>
         </tr>
