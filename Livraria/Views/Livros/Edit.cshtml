@@ -1,7 +1,7 @@
 ﻿@model Livraria.Model.Models.Livro
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Editar";
 }
 
 <h1>Editar</h1>
@@ -17,6 +17,10 @@
                 <input asp-for="Id" class="form-control" />
                 <span asp-validation-for="Id" class="text-danger"></span>
             </div>
+<<<<<<< HEAD
+
+=======
+>>>>>>> 5697e58303b24d13f8fb4ff21823e2bc6de277d1
             <div class="form-group">
                 <label asp-for="Nome" class="control-label"></label>
                 <input asp-for="Nome" class="form-control" />
@@ -42,15 +46,13 @@
                 <input asp-for="Genero" class="form-control" />
                 <span asp-validation-for="Genero" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group mt-3">
                 <input type="submit" value="Alterar" class="btn btn-success" />
+                |
+                <a asp-action="Index" class="btn btn-primary">Retornar</a>
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index" class="btn btn-primary">Retornar</a>
 </div>
 
 @section Scripts {
