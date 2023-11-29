@@ -8,18 +8,20 @@ namespace Livraria.ViewModel
     {
         [DisplayName("Código")]
         public int Id { get; set; }
-
-        [DisplayName("Código do Cliente")]
+        [DisplayName("Código Cliente")]
         public int IdCliente { get; set; }
 
         [DisplayName("Nome do Cliente")]
         public string ClienteName { get; set; }
 
+        [DisplayName("Código Livro")]
+        public int IdLivro { get; set; }
+
+        [DisplayName("Quantidade de Livros")]
+        public int QtdLivros { get; set;}
+
         [DisplayName("Nome do Livro")]
         public string LivroName { get; set; }
-
-        [DisplayName("Código do Livro")]
-        public int IdLivro { get; set; }
 
         [DisplayName("Data de Retorno")]
         public DateTime DataEntrega { get; set; }
@@ -59,6 +61,7 @@ namespace Livraria.ViewModel
                 IdCliente = Aluguel.IdCliente,
                 ClienteName = db.Cliente.Find(Aluguel.IdCliente).Nome,
                 IdLivro = Aluguel.IdLivro,
+                QtdLivros = db.Livro.Count(),
                 LivroName = db.Livro.Find(Aluguel.IdLivro).Nome,
                 DataEntrega = Aluguel.DataRetorno,
                 Retornado = Aluguel.Retornado,
@@ -75,9 +78,10 @@ namespace Livraria.ViewModel
 
                 var Aluguel = new AluguelVM();
                 Aluguel.Id = v.Id;
-                Aluguel.IdCliente = v.IdCliente;
+                Aluguel.IdCliente = Aluguel.IdCliente;
                 Aluguel.ClienteName = db.Cliente.FirstOrDefault(x => x.Id == v.IdCliente).Nome;
-                Aluguel.IdLivro = v.IdLivro;
+                Aluguel.IdLivro = Aluguel.IdLivro;
+                Aluguel.QtdLivros = db.Livro.Count();
                 Aluguel.LivroName = db.Livro.FirstOrDefault(x => x.Id == v.IdLivro).Nome;
                 Aluguel.DataEntrega = v.DataRetorno;
                 Aluguel.Retornado = v.Retornado;

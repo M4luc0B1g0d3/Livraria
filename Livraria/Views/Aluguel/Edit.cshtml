@@ -28,7 +28,10 @@
             </div>
             <div class="form-group">
                 <label>Livro</label>
-                <select class="form-select" asp-for="IdLivro" id="LivroName" asp-items="@ViewBag.IdLivros">
+                <select class="form-select" asp-for="IdLivro" id="LivroName" asp-items="@ViewBag.IdLivros" disabled>
+                    <option selected value="">Selecione um Livro</option>
+                </select>
+                <select class="form-select" asp-for="IdLivro" id="LivroName" asp-items="@ViewBag.IdLivros" hidden>
                     <option selected value="">Selecione um Livro</option>
                 </select>
             </div>
