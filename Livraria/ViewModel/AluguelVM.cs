@@ -1,5 +1,6 @@
 ﻿using Livraria.Model.Models;
 using Livraria.Models;
+using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel;
 
 namespace Livraria.ViewModel
@@ -7,6 +8,7 @@ namespace Livraria.ViewModel
     public class AluguelVM
     {
         [DisplayName("Código")]
+        [HiddenInput(DisplayValue = false)]
         public int Id { get; set; }
 
         [DisplayName("Código do Cliente")]
