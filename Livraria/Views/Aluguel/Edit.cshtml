@@ -12,26 +12,25 @@
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-<<<<<<< HEAD
             <div class="form-group">
-                <select class="form-select" asp-for="IdCliente" id="ClienteName" asp-items="@ViewBag.IdClientes">
+                <label>Cliente</label>
+                <select class="form-select" asp-for="IdCliente" id="ClienteName" asp-items="@ViewBag.IdClientes" disabled>
                     <option selected value="">Selecione um Cliente</option>
                 </select>
-=======
-            <div class="form-group" hidden>
-                <label asp-for="Id" class="control-label"></label>
-                <input asp-for="Id" class="form-control" />
-                <span asp-validation-for="Id" class="text-danger"></span>
->>>>>>> 507597f13eed98167bafa3f76caf597af8194f5b
+                <select class="form-select" asp-for="IdCliente" id="ClienteName" asp-items="@ViewBag.IdClientes" hidden>
+                    <option selected value="">Selecione um Cliente</option>
+                </select>
             </div>
             <div class="form-group">
+                <label>Livro</label>
                 <select class="form-select" asp-for="IdLivro" id="LivroName" asp-items="@ViewBag.IdLivros">
                     <option selected value="">Selecione um Livro</option>
                 </select>
             </div>
             <div class="form-group">
                 <label asp-for="DataRetorno" class="control-label"></label>
-                <input asp-for="DataRetorno" class="form-control" />
+                <input asp-for="DataRetorno" class="form-control" disabled/>
+                <input asp-for="DataRetorno" class="form-control" hidden/>
                 <span asp-validation-for="DataRetorno" class="text-danger"></span>
             </div>
             <div class="form-group form-check">
@@ -39,15 +38,13 @@
                     <input class="form-check-input" asp-for="Retornado" /> @Html.DisplayNameFor(model => model.Retornado)
                 </label>
             </div>
-            <div class="form-group">
+            <div class="form-group mt-3">
                 <input type="submit" value="Alterar" class="btn btn-success" />
+                |
+                <a asp-action="Index" class="btn btn-primary">Retornar</a>
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index" class="btn btn-primary">Retornar</a>
 </div>
 
 @section Scripts {
