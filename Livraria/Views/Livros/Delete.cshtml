@@ -11,23 +11,16 @@
     <h4>Livro</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Id)
-        </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Id)
+                <img class="capa img-fluid border rounded" style="height: 200px;"
+                src="@Html.DisplayFor(model => model.Capa)">
         </dd>
+        <div>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Nome)
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Nome)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Capa)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Capa)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Ano)
@@ -47,6 +40,7 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Genero)
         </dd>
+        </div>
     </dl>
     
     <form asp-action="Delete">
